@@ -47,7 +47,7 @@ HTTP(hypertext transport protocol)协议【超文本传输协议】，协议详�
 ```
 
 ### 1.5 网络控制台查看通信报文
-![network](./../图片/network.png)
+![network](./笔记/图片/network.png)
 
 ## 第二章：Ajax的使用
 ### 2.1 express的框架使用
