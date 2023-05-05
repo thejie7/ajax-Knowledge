@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script crossorigin="anonymous" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+  <style>
+    #result {
+      width: 200px;
+      height: 100px;
+      border: 1px solid hotpink;
+    }
+  </style>
+</head>
+
+<body>
+  <button>点我发送Get请求</button>
+  <button>点我发送POST请求</button>
+  <button>点我发送通用请求</button>
+  <div id="result"></div>
+</body>
+<script>
+  //获取dom元素
+  btn = document.querySelectorAll("button")
+  box = document.querySelector("#result")
+  axios.defaults.baseURL = "http://127.0.0.1:8000"
+  btn[0].onclick = function () {
+    //axios.get("url",{参数,请求头})
+    axios.get("/axios-server", {
+      //参数
+      params: {
+        a: 100,
+        b: 200
+      },
+      //请求头信息
+      headers: {
+        vip: 7
+      }
+    }).then(value => {  //处理数据
+      console.log(value)
+    })
+  }
+
+  btn[1].onclick = function () {
+    //axios.post("url",{请求体信息},{参数,请求头})
+    axios.post("/axios-server", {
+      //请求体信息
+      text: "哈哈"
+    },
+      {
+        //参数
+        params: {
+          a: 100,
+          b: 200
+        },
+        //请求头
+        headers: {
+          vip: 7
+        }
+      }).then(value => {  //处理数据
+        console.log(value)
+      })
+  }
+
+  btn[2].onclick = function () {
+    //通用方法
+    axios({
+      //请求方法
+      method: "POST",
+      url: "/axios-server",
+      params: {
+        a: 100,
+        b: 200
+      },
+      headers: {
+        vip: 7
+      },
+      data: {
+        text: "哈哈"
+      }
+    }).then(value => {  //处理数据
+      console.log(value.data)
+    })
+  }
+</script>
+
+</html>

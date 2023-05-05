@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  用户名：<input type="text" id="username">
+  <p></p>
+</body>
+<script>
+  input = document.querySelector("input")
+  p = document.querySelector("p")
+  function headle(data) {
+    // console.log(input.value)
+    let username = input.value
+    if (username === data.username) {
+      input.style.border = "1px solid hotpink"
+      p.innerHTML = data.msg
+    }
+  }
+  input.onblur = function () {
+    const script = document.createElement("script")
+    script.src = "http://127.0.0.1:8000/check-server"
+    document.body.appendChild(script)
+  }
+</script>
+
+</html>

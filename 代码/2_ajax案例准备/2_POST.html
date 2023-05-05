@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #result {
+      width: 200px;
+      height: 100px;
+      border: 1px solid hotpink;
+    }
+  </style>
+</head>
+
+<body>
+  <button>点我发送请求</button>
+  <div id="result"></div>
+</body>
+<script>
+  //获取dom元素
+  btn = document.querySelector("button")
+  box = document.querySelector("#result")
+  btn.onclick = function () {
+    //创建对象
+    const xhr = new XMLHttpRequest()
+    //初始化，设置请求方法和url
+    xhr.open("POST", "http://127.0.0.1:8000/server")
+    //设置请求头
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    //发送请求
+    xhr.send("a:100&b:200")
+    //事件绑定，处理服务端返回的结果
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          box.innerHTML = xhr.response;  //将响应体打印在div盒子里
+        } else {
+
+        }
+      }
+    }
+  }
+</script>
+
+</html>
